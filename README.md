@@ -16,3 +16,4 @@ data\txt此目录保存训练过程中一些txt文件
 4、sen2inds.py
 5、train.py
 6、test.py
+过段时间会更新一些注释等等得东西
