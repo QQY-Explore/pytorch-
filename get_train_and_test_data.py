@@ -39,6 +39,8 @@ def main():
             test_f.write(json_data)
             test_f.write('\n')
             WantedClass[cla] += 1
+    train_f.close()
+    test_f.close()
 
 if __name__ == '__main__':
     main()
