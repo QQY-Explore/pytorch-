@@ -3,14 +3,18 @@ import os
 import torch.nn as nn
 import numpy as np
 import time
-
+import matplotlib.pyplot as plt
 from model import textCNN
 import sen2inds
 import textCNN_data
 
 trainDataVecFile = 'data/txt/train_data_vec.txt'
 testDataVecFile = 'data/txt/test_data_vec.txt'
+#word2ind字典：字符为key，角标为value
+#ind2word字典：角标为key，字符为value
 word2ind, ind2word = sen2inds.get_worddict('data/txt/train_wordLabel.txt')
+#label_w2n字典：字符（子板块名）为key，角标为value
+#label_n2w字典：角标为key，字符（子板块名）为value
 label_w2n, label_n2w = sen2inds.read_labelFile('data/txt/train_label.txt')
 weightFile = 'data/pkl/weight.pkl'
 textCNN_param = {
@@ -37,7 +41,7 @@ def main():
         net.load_state_dict(torch.load(weightFile))
     else:
         net.init_weight()
-    print(net)
+    print("net-->%s" %net)
 
     net.cuda()
 
@@ -71,7 +75,8 @@ def main():
         print("save model...")
         torch.save(net.state_dict(), weightFile)
         torch.save(net.state_dict(), "data/model\{}_model_iter_{}_{}_loss_{:.2f}.pkl".format(time.strftime('%y%m%d%H'), epoch, i, loss.item()))  # current is model.pkl
-        print("epoch:", epoch + 1, "step:", i + 1, "loss:", loss.item())      
+        print("epoch:", epoch + 1, "step:", i + 1, "loss:", loss.item())
+
 
 
 if __name__ == "__main__":
