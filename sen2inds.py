@@ -63,7 +63,7 @@ ValidJsonFile   -->训练数据/测试数据(train/teat)
 def json2txt(labelFile,wordLabelFile,DataVecFile,ValidJsonFile):
     label_dict, label_n2w = read_labelFile(labelFile)
     word2ind, ind2word = get_worddict(wordLabelFile)
-    print("word2ind-->%s" %word2ind)
+    #print("word2ind-->%s" %word2ind)
     traindataTxt = open(DataVecFile, 'w')
     stoplist = read_stopword(stopwordFile)
     datas = open(ValidJsonFile, 'r', encoding='utf_8').read().split('\n')
