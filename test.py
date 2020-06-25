@@ -3,7 +3,7 @@ import os
 import torch.nn as nn
 import numpy as np
 import time
-
+import matplotlib.pyplot as plt
 from model import textCNN
 import sen2inds
 
@@ -51,7 +51,7 @@ def main():
 
     numAll = 0
     numRight = 0
-    testData = get_valData('data/txt/train_data_vec.txt')
+    testData = get_valData('data/txt/test_data_vec.txt')
     for data in testData:
         numAll += 1
         data = data.split(',')
@@ -60,10 +60,12 @@ def main():
         sentence = torch.from_numpy(sentence)
         predict = net(sentence.unsqueeze(0).type(torch.LongTensor).cuda()).cpu().detach().numpy()[0]
         label_pre, score = parse_net_result(predict)
+        print("on")
         if label_pre == label and score > -100:
             numRight += 1
         if numAll % 100 == 0:
             print('acc:{}({}/{})'.format(numRight / numAll, numRight, numAll))
+
 
 
 if __name__ == "__main__":
