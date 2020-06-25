@@ -72,4 +72,4 @@ def main(File,Label,lengthfile):
 
 if __name__ == "__main__":
     main(Train_ValidJsonFile,train_wordLabelFile,train_lengthFile)#处理训练数据
-    main(Train_ValidJsonFile,test_wordLabelFile,test_lengthFile)#处理测试数据
+    main(Test_ValidJsonFile,test_wordLabelFile,test_lengthFile)#处理测试数据
